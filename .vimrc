@@ -16,8 +16,52 @@ set backup
 set enc=utf-8
 set fenc=utf-8
 set fencs=iso-2022-jp,euc-jp,cp932
+set t_Co=256
 
-call pathogen#runtime_append_all_bundles()
+
+"call pathogen#runtime_append_all_bundles()
+
+"------------------------------------
+"Neo Bundle
+"------------------------------------
+"NeoBundleCheck
+
+set nocompatible
+filetype plugin indent off
+
+if has('vim_starting')
+  set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
+  call neobundle#rc(expand('~/dotfiles/.vim/bundle/'))
+endif
+
+call neobundle#begin(expand('~/dotfiles/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc'
+
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'vim-scripts/Lucius'
+NeoBundle 'vim-scripts/Zenburn'
+NeoBundle 'mrkn/mrkn256.vim'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'therubymug/vim-pyte'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'w0ng/vim-hybrid'
+
+NeoBundle 'ujihisa/unite-colorscheme'
+
+ call neobundle#end()
+
+filetype plugin indent on
+
+colorscheme jellybeans
 
 "------------------------------------
 " unite.vim
