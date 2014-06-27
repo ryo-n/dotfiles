@@ -18,20 +18,16 @@ set fenc=utf-8
 set fencs=iso-2022-jp,euc-jp,cp932
 set t_Co=256
 
-
-"call pathogen#runtime_append_all_bundles()
-
 "------------------------------------
 "Neo Bundle
 "------------------------------------
-"NeoBundleCheck
 
-set nocompatible
-filetype plugin indent off
+"filetype plugin indent off
 
 if has('vim_starting')
+  set nocompatible
   set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/dotfiles/.vim/bundle/'))
+  "call neobundle#rc(expand('~/dotfiles/.vim/bundle/'))
 endif
 
 call neobundle#begin(expand('~/dotfiles/.vim/bundle/'))
@@ -41,8 +37,17 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
-
+let vimproc_updcmd = has('win64') ?
+      \ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
+execute "NeoBundle 'Shougo/vimproc.vim'," . string({
+      \ 'build' : {
+      \     'windows' : vimproc_updcmd,
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ })
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'croaker/mustang-vim'
 NeoBundle 'jeffreyiacono/vim-colors-wombat'
@@ -54,33 +59,35 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'w0ng/vim-hybrid'
-
 NeoBundle 'ujihisa/unite-colorscheme'
 
- call neobundle#end()
+call neobundle#end()
 
 filetype plugin indent on
 
+NeoBundleCheck
+
 colorscheme jellybeans
+
 
 "------------------------------------
 " unite.vim
 "------------------------------------
-" $BF~NO%b!<%I$G3+;O$9$k(B
+" 入力モードで開始する
 "let g:unite_enable_start_insert=1
 
-" $B%P%C%U%!0lMw(B
+" バッファ一覧
 noremap <C-U><C-B> :Unite buffer<CR>
-" $B%U%!%$%k0lMw(B
+" ファイル一覧
 noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
-" $B:G6a;H$C$?%U%!%$%k$N0lMw(B
+" 最近使ったファイルの一覧
 noremap <C-U><C-R> :Unite file_mru<CR>
-" $B%l%8%9%?0lMw(B
+" レジスタ一覧
 noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
-" $B%U%!%$%k$H%P%C%U%!(B
+" ファイルとバッファ
 noremap <C-U><C-U> :Unite buffer file_mru<CR>
-" $BA4It(B
+" 全部
 noremap <C-U><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-" ESC$B%-!<$r(B2$B2s2!$9$H=*N;$9$k(B
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+" ESCキーを2回押すと終了する
+"au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+"au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
