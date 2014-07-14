@@ -24,7 +24,6 @@ set t_Co=256
 "------------------------------------
 "Neo Bundle
 "------------------------------------
-"NeoBundleCheck
 
 set nocompatible
 filetype plugin indent off
@@ -41,7 +40,19 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/neomru.vim'
+" NeoBundle 'Shougo/vimproc'
+let vimproc_updcmd = has('win64') ?
+      \ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
+execute "NeoBundle 'Shougo/vimproc.vim'," . string({
+      \ 'build' : {
+      \     'windows' : vimproc_updcmd,
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ })
+
 
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'croaker/mustang-vim'
@@ -56,6 +67,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'w0ng/vim-hybrid'
 
 NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundleCheck
 
  call neobundle#end()
 
