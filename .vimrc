@@ -63,6 +63,8 @@ NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'alpaca-tc/alpaca_powertabline'
+NeoBundle 'Lokaltog/powerline.git', { 'rtp' : 'powerline/bindings/vim'}
 NeoBundleCheck
 
 call neobundle#end()
@@ -75,6 +77,14 @@ NeoBundleCheck
 colorscheme jellybeans
 
 call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
+
+"------------------------------------
+" powerline
+"------------------------------------
+set laststatus=2
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+let g:Powerline_symbols = 'fancy'
+set noshowmode
 
 "------------------------------------
 " unite.vim

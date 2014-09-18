@@ -5,7 +5,7 @@ compinit
 #predict-on
 
 export PATH=/opt/local/bin:/usr/local/bin:/opt/local/sbin:/Application/android-sdk-mac_86/tools:/usr/local/mysql/bin:$PATH
-
+export LC_ALL='ja_JP.UTF-8'
 setopt auto_cd 
 
 setopt auto_pushd 
@@ -73,3 +73,5 @@ export ZLS_COLORS=$LS_COLORS
 export CLICOLOR=true
 # 補完候補に色を付ける
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+#source ~/dotfiles/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
