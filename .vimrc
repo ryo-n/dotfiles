@@ -19,6 +19,11 @@ set enc=utf-8
 set fenc=utf-8
 set fencs=iso-2022-jp,euc-jp,cp932
 set t_Co=256
+set history=200
+set pastetoggle=<f5>
+
+
+cnoremap <expr> %% getcmdtype() == ’:’ ? expand(’%:h’).’/’ : ’%%’
 
 "------------------------------------
 "Neo Bundle
@@ -63,8 +68,19 @@ NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'alpaca-tc/alpaca_powertabline'
+"NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'Lokaltog/powerline.git', { 'rtp' : 'powerline/bindings/vim'}
+NeoBundle 'alpaca-tc/alpaca_powertabline'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'marcus/rsense'
+NeoBundle 'supermomonga/neocomplete-rsense.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'yuku-t/vim-ref-ri'
+NeoBundle 'szw/vim-tags'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
 NeoBundleCheck
 
 call neobundle#end()
@@ -72,11 +88,39 @@ call neobundle#end()
 filetype plugin indent on
 filetype on
 
+runtime macros/matchit.vim
+
 NeoBundleCheck
 
 colorscheme jellybeans
 
 call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
+
+" -------------------------------
+" Rsense
+" -------------------------------
+let g:rsenseHome = '/usr/local/bin/rsense'
+let g:rsenseUseOmniFunc = 1
+let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
+
+" --------------------------------
+" neocomplete.vim
+" --------------------------------
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
+" --------------------------------
+" rubocop
+" --------------------------------
+" syntastic_mode_mapをactiveにするとバッファ保存時にsyntasticが走る
+" active_filetypesに、保存時にsyntasticを走らせるファイルタイプを指定する
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
+let g:syntastic_ruby_checkers = ['rubocop']
 
 "------------------------------------
 " powerline
@@ -85,6 +129,17 @@ set laststatus=2
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 let g:Powerline_symbols = 'fancy'
 set noshowmode
+"------------------------------------
+" lightline
+" -----------------------------------
+" let g:lightline = {
+"       \ 'colorscheme': 'wombat',
+"             \ 'component': {
+"                   \   'readonly': '%{&readonly?"⭤":""}',
+"     \ },
+"     \ 'separator': { 'left': '⮀', 'right': '⮂' },
+"     \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+"     \ }
 
 "------------------------------------
 " unite.vim
