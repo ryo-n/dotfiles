@@ -99,9 +99,8 @@ call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
 " -------------------------------
 " Rsense
 " -------------------------------
-let g:rsenseHome = '/usr/local/bin/rsense'
+let g:rsenseHome = '/usr/local/Cellar/rsense/0.3/libexec/'
 let g:rsenseUseOmniFunc = 1
-let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
 
 " --------------------------------
 " neocomplete.vim
@@ -117,8 +116,6 @@ let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
 " --------------------------------
 " rubocop
 " --------------------------------
-" syntastic_mode_mapをactiveにするとバッファ保存時にsyntasticが走る
-" active_filetypesに、保存時にsyntasticを走らせるファイルタイプを指定する
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
 let g:syntastic_ruby_checkers = ['rubocop']
 
