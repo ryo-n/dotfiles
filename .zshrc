@@ -1,5 +1,5 @@
 autoload -U compinit
-compinit 
+compinit  -u
 
 #autoload predict-on
 #predict-on

@@ -68,8 +68,9 @@ NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'ujihisa/unite-colorscheme'
-"NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'Lokaltog/powerline.git', { 'rtp' : 'powerline/bindings/vim'}
+NeoBundle 'bling/vim-airline'
+NeoBundle 'edkolev/tmuxline.vim'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'alpaca-tc/alpaca_powertabline'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'marcus/rsense'
@@ -119,24 +120,6 @@ let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
 let g:syntastic_ruby_checkers = ['rubocop']
 
-"------------------------------------
-" powerline
-"------------------------------------
-set laststatus=2
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-let g:Powerline_symbols = 'fancy'
-set noshowmode
-"------------------------------------
-" lightline
-" -----------------------------------
-" let g:lightline = {
-"       \ 'colorscheme': 'wombat',
-"             \ 'component': {
-"                   \   'readonly': '%{&readonly?"⭤":""}',
-"     \ },
-"     \ 'separator': { 'left': '⮀', 'right': '⮂' },
-"     \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-"     \ }
 
 "------------------------------------
 " unite.vim
@@ -173,3 +156,14 @@ noremap <C-U><C-U> :Unite buffer file_mru<CR>
 " ESCキーを2回押すと終了する
 "au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 "au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+"
+"------------------------------------
+" vim-airline
+"------------------------------------
+set laststatus=2
+let g:airline_powerline_fonts = 1
+
+"------------------------------------
+" tmuxline
+"------------------------------------
+let g:airline#extensions#tmuxline#enabled = 0 
