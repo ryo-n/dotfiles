@@ -74,4 +74,6 @@ export CLICOLOR=true
 # 補完候補に色を付ける
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-#source ~/dotfiles/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
+if [ -f $(brew --prefix)/etc/brew-wrap ];then
+  source $(brew --prefix)/etc/brew-wrap
+fi
