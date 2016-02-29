@@ -145,7 +145,7 @@ noremap <C-U><C-B> :Unite buffer<CR>
 " ファイル一覧
 noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
 " ファイル一覧
-noremap <C-U><C-D> :Unite file_rec/async<CR>
+noremap <C-U><C-D> :Unite file_rec/async:!<CR>
 " 最近使ったファイルの一覧
 noremap <C-U><C-R> :Unite file_mru<CR>
 " レジスタ一覧
