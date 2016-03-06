@@ -35,74 +35,49 @@ cnoremap <expr> %% getcmdtype() == ’:’ ? expand(’%:h’).’/’ : ’%%�
 
 
 if has('vim_starting')
-"	set nocompatible
+    if &compatible
+        set nocompatible
+    endif
 	set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
 	"call neobundle#rc(expand('~/dotfiles/.vim/bundle/'))
 endif
 
-call neobundle#begin(expand('~/dotfiles/.vim/bundle/'))
+" -------------------------------
+" dein.vim
+" -------------------------------
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" My Bundles here:
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/unite.vim'
-let vimproc_updcmd = has('win64') ?
-			\ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
-execute "NeoBundle 'Shougo/vimproc.vim'," . string({
-			\ 'build' : {
-			\     'windows' : vimproc_updcmd,
-			\     'cygwin' : 'make -f make_cygwin.mak',
-			\     'mac' : 'make -f make_mac.mak',
-			\     'unix' : 'make -f make_unix.mak',
-			\    },
-			\ })
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'croaker/mustang-vim'
-NeoBundle 'jeffreyiacono/vim-colors-wombat'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'vim-scripts/Lucius'
-NeoBundle 'vim-scripts/Zenburn'
-NeoBundle 'mrkn/mrkn256.vim'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'therubymug/vim-pyte'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'alpaca-tc/alpaca_powertabline'
-if has('nvim')
-    NeoBundleLazy 'Shougo/deoplete.nvim', {
-          \ "autoload": {"insert": 1}}
-else
-    NeoBundleLazy 'Shougo/neocomplete.vim', {
-          \ "autoload": {"insert": 1}}
+if !isdirectory(s:dein_repo_dir)
+  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
-NeoBundle 'marcus/rsense'
-NeoBundle 'supermomonga/neocomplete-rsense.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'yuku-t/vim-ref-ri'
-NeoBundle 'szw/vim-tags'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundleCheck
+execute 'set runtimepath^=' . s:dein_repo_dir
 
-call neobundle#end()
+call dein#begin(s:dein_dir)
+
+let s:toml = '~/.dein.toml'
+let s:lazy_toml = '~/.dein_lazy.toml'
+
+if dein#load_cache([expand('<sfile>', s:toml, s:lazy_toml)])
+  call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#save_cache()
+endif
+
+call dein#end()
+
+if dein#check_install(['vimproc'])
+  call dein#install(['vimproc'])
+endif
+
+if dein#check_install()
+  call dein#install()
+endif
 
 filetype plugin indent on
 filetype on
 
 runtime macros/matchit.vim
-
-NeoBundleCheck
 
 colorscheme jellybeans
 

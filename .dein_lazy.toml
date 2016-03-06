@@ -1,0 +1,7 @@
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+if = '(has("nvim"))'
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+on_i = 1
