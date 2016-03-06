@@ -21,6 +21,7 @@ set fencs=iso-2022-jp,euc-jp,cp932
 "set t_Co=256
 set history=200
 set pastetoggle=<f5>
+set mouse-=a
 
 "Python3 support
 let g:python3_host_prog = expand('$HOME') . '/.pyenv/shims/python3'
