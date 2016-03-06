@@ -18,9 +18,12 @@ set backup
 set enc=utf-8
 set fenc=utf-8
 set fencs=iso-2022-jp,euc-jp,cp932
-set t_Co=256
+"set t_Co=256
 set history=200
 set pastetoggle=<f5>
+
+"Python3 support
+let g:python3_host_prog = expand('$HOME') . '/.pyenv/shims/python3'
 
 
 cnoremap <expr> %% getcmdtype() == ’:’ ? expand(’%:h’).’/’ : ’%%’
@@ -31,9 +34,9 @@ cnoremap <expr> %% getcmdtype() == ’:’ ? expand(’%:h’).’/’ : ’%%�
 
 
 if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
-  "call neobundle#rc(expand('~/dotfiles/.vim/bundle/'))
+"	set nocompatible
+	set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
+	"call neobundle#rc(expand('~/dotfiles/.vim/bundle/'))
 endif
 
 call neobundle#begin(expand('~/dotfiles/.vim/bundle/'))
@@ -46,15 +49,15 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/unite.vim'
 let vimproc_updcmd = has('win64') ?
-      \ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
+			\ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
 execute "NeoBundle 'Shougo/vimproc.vim'," . string({
-      \ 'build' : {
-      \     'windows' : vimproc_updcmd,
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ })
+			\ 'build' : {
+			\     'windows' : vimproc_updcmd,
+			\     'cygwin' : 'make -f make_cygwin.mak',
+			\     'mac' : 'make -f make_mac.mak',
+			\     'unix' : 'make -f make_unix.mak',
+			\    },
+			\ })
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'croaker/mustang-vim'
@@ -73,7 +76,13 @@ NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'alpaca-tc/alpaca_powertabline'
-NeoBundle 'Shougo/neocomplete.vim'
+if has('nvim')
+    NeoBundleLazy 'Shougo/deoplete.nvim', {
+          \ "autoload": {"insert": 1}}
+else
+    NeoBundleLazy 'Shougo/neocomplete.vim', {
+          \ "autoload": {"insert": 1}}
+endif
 NeoBundle 'marcus/rsense'
 NeoBundle 'supermomonga/neocomplete-rsense.vim'
 NeoBundle 'scrooloose/syntastic'
@@ -105,15 +114,22 @@ let g:rsenseHome = '/usr/local/Cellar/rsense/0.3/libexec/'
 let g:rsenseUseOmniFunc = 1
 
 " --------------------------------
-" neocomplete.vim
+" deoplete and neocomplete.vim
 " --------------------------------
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
+if has('nvim')
+	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#enable_at_smart_case = 1
+else
+	let g:acp_enableAtStartup = 0
+	let g:neocomplete#enable_at_startup = 1
+	let g:neocomplete#enable_smart_case = 1
+	if !exists('g:neocomplete#force_omni_input_patterns')
+		let g:neocomplete#force_omni_input_patterns = {}
+	endif
+	let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
 endif
-let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
+
 
 " --------------------------------
 " rubocop
@@ -163,17 +179,17 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 if executable('hw')
-  " Use hw (highway)
-  " https://github.com/tkengo/highway
-  let g:unite_source_grep_command = 'hw'
-  let g:unite_source_grep_default_opts = '--no-group --no-color'
-  let g:unite_source_grep_recursive_opt = ''
+	" Use hw (highway)
+	" https://github.com/tkengo/highway
+	let g:unite_source_grep_command = 'hw'
+	let g:unite_source_grep_default_opts = '--no-group --no-color'
+	let g:unite_source_grep_recursive_opt = ''
 elseif executable('pt')
-  " Use pt (the platinum searcher)
-  " https://github.com/monochromegane/the_platinum_searcher
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-  let g:unite_source_grep_recursive_opt = ''
+	" Use pt (the platinum searcher)
+	" https://github.com/monochromegane/the_platinum_searcher
+	let g:unite_source_grep_command = 'pt'
+	let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+	let g:unite_source_grep_recursive_opt = ''
 endif
 
 "------------------------------------

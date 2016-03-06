@@ -6,6 +6,11 @@ compinit  -u
 
 export PATH=/opt/local/bin:/usr/local/bin:/opt/local/sbin:/Application/android-sdk-mac_86/tools:/usr/local/mysql/bin:$PATH
 export LC_ALL='ja_JP.UTF-8'
+export HOMEBREW_BREWFILE=~/Dropbox/Brewfile
+export XDG_CONFIG_HOME=~/.config
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 setopt auto_cd 
 
 setopt auto_pushd 
@@ -17,6 +22,7 @@ setopt list_packed
 setopt nolistbeep 
 
 alias tmux="tmux -2"
+alias vim="nvim"
 
 export LANG=ja_JP.UTF-8
 
