@@ -29,22 +29,16 @@ let g:python3_host_prog = expand('$HOME') . '/.pyenv/shims/python3'
 
 cnoremap <expr> %% getcmdtype() == ’:’ ? expand(’%:h’).’/’ : ’%%’
 
-"------------------------------------
-"Neo Bundle
-"------------------------------------
 
 
-if has('vim_starting')
-    if &compatible
-        set nocompatible
-    endif
-	set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
-	"call neobundle#rc(expand('~/dotfiles/.vim/bundle/'))
-endif
 
 " -------------------------------
 " dein.vim
 " -------------------------------
+if &compatible
+    set nocompatible
+endif
+
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
