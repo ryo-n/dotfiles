@@ -5,3 +5,8 @@ if = '(has("nvim"))'
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
 on_i = 1
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+if = "!has('nvim')"
+on_ft = 'python'

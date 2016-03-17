@@ -9,9 +9,6 @@ build = 'make'
 repo = 'Shougo/vimshell.vim'
 
 [[plugins]]
-repo = 'Shougo/vimshell.vim'
-
-[[plugins]]
 repo = 'Shougo/vimfiler.vim'
 
 [[plugins]]
@@ -72,7 +69,7 @@ repo = 'tpope/vim-fugitive'
 repo = 'alpaca-tc/alpaca_powertabline'
 
 [[plugins]]
-repo = 'marcus/rsense'
+repo = 'NigoroJr/rsense'
 
 [[plugins]]
 repo = 'supermomonga/neocomplete-rsense.vim'
@@ -103,3 +100,10 @@ repo = 'Shougo/neosnippet'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+
+[[plugins]]
+repo = 'Shougo/unite-help'
+on_source ='unite.vim'
