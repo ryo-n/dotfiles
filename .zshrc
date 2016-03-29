@@ -22,7 +22,7 @@ setopt list_packed
 setopt nolistbeep 
 
 alias tmux="tmux -2"
-alias vim="nvim"
+#alias vim="nvim"
 
 export LANG=ja_JP.UTF-8
 

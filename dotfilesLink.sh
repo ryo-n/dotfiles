@@ -8,3 +8,4 @@ ln -s ~/dotfiles/.vim ~/.config/nvim
 ln -s ~/dotfiles/.vimrc ~/.config/nvim/init.vim
 ln -s ~/dotfiles/.dein.toml  ~/.dein.toml
 ln -s ~/dotfiles/.dein_lazy.toml ~/.dein_lazy.toml
+ln -s ~/dotfiles/.vimperatorrc ~/.vimperatorrc

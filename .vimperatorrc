@@ -1,0 +1,72 @@
+" vim: set filetype=vim :
+
+
+"============================
+" General
+"============================
+
+" 入力欄に自動フォーカスしない
+set focuscontent
+" ビジュアルベルを表示しない
+set visualbell
+highlight Bell display:none
+" :oなどでの補完候補をサーチエンジン、履歴に限定
+set complete=sl
+" Hintモードでアルファベット使用
+set hintchars=sadfjklewcmpgh
+" ツールバーはアドオンとタブのみ表示
+set gui=nobookmarks,nomenu,nonavigation,tabs,addons
+" commandモードでIMEオフ
+style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
+"============================
+" Key mapping
+"============================
+
+" google検索を手早くする
+noremap s :open<Space>google<Space>
+noremap ,s :tabopen<Space>google<Space>
+
+
+
+" OS分岐
+" dをブラウザ標準の「タブを閉じる」にマッピング
+" vimperatorrcのリロード
+js<<EOM
+if(liberator.has("MacUnix")) {
+  liberator.execute("map d <M-w>");
+  liberator.execute("map ,r :source<Space>~/.vimperatorrc<CR>");
+} else {
+  liberator.execute("map d <C-w>");
+  liberator.execute("map ,r :source<Space>~/_vimperatorrc<CR>");
+}
+EOM
+
+" 移動幅
+noremap j 5j
+noremap k 5k
+noremap h 5h
+noremap l 5l
+
+noremap B :bmark 
+
+" 候補選択にて Ctrl-n -> 次へ, Ctrl-p -> 前へ
+cmap <C-n> <TAB>
+cmap <C-p> <S-TAB>
+
+
+"============================
+" colorscheme
+"============================
+" デフォルトのヒント派手すぎ＞＜
+hi Hint font-family: Arial; font-size: 21px; font-weight: bold; text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black; color: #33cccc;
+hi HintElem color: gray; background-color: #a1e4e6;
+hi HintActive color: black; background-color: #ff8700;
+
+" デフォルトのエラー赤くてこわい＞＜
+hi ErrorMsg color:white; background-color: #ec6aa1;
+
+
+
+
+
