@@ -69,12 +69,6 @@ repo = 'tpope/vim-fugitive'
 repo = 'alpaca-tc/alpaca_powertabline'
 
 [[plugins]]
-repo = 'NigoroJr/rsense'
-
-[[plugins]]
-repo = 'supermomonga/neocomplete-rsense.vim'
-
-[[plugins]]
 repo = 'scrooloose/syntastic'
 
 [[plugins]]
