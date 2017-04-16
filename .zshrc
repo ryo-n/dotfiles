@@ -4,7 +4,9 @@ compinit  -u
 #autoload predict-on
 #predict-on
 
+fpath=(/usr/local/share/zsh-completions $fpath)
 export PATH=/opt/local/bin:/usr/local/bin:/opt/local/sbin:/Application/android-sdk-mac_86/tools:/usr/local/mysql/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin:~/go/bin
 export LC_ALL='ja_JP.UTF-8'
 export HOMEBREW_BREWFILE=~/Dropbox/Brewfile
 export XDG_CONFIG_HOME=~/.config
@@ -85,6 +87,17 @@ function peco-select-history() {
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
+
+function peco-src () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-src
+bindkey '^g' peco-src
 
 
 # ------------------------------
