@@ -1,6 +1,4 @@
 syntax on
-filetype off
-filetype plugin indent off
 autocmd FileType c,cpp,perl set cindent
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 
@@ -40,7 +38,21 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+call plug#begin('~/.vim/plugged')
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'nanotech/jellybeans.vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
+
+
+" -------------------------------
+" color
+" -------------------------------
+colorscheme jellybeans
 
 "------------------------------------
 " vim-airline
