@@ -15,7 +15,7 @@ set shiftwidth=4
 set backup
 set enc=utf-8
 set fenc=utf-8
-set fencs=iso-2022-jp,euc-jp,cp932,utf-8
+set fencs=utf-8,iso-2022-jp,euc-jp,cp932
 set t_Co=256
 set history=200
 set pastetoggle=<f5>
@@ -28,6 +28,8 @@ set nobackup
 
 
 cnoremap <expr> %% getcmdtype() == ’:’ ? expand(’%:h’).’/’ : ’%%’
+
+let mapleader = ","
 
 " -------------------------------
 " vim-plug
@@ -47,6 +49,8 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
+Plug 'thinca/vim-quickrun'
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -56,6 +60,23 @@ call plug#end()
 " color
 " -------------------------------
 colorscheme jellybeans
+
+" -------------------------------
+" fzf
+" -------------------------------
+
+nnoremap [unite]    <Nop>
+nmap     <C-u> [unite]
+
+nnoremap <silent> [unite]f   :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [unite]<C-d>   :<C-u>Unite file_rec/async<CR>
+nnoremap <silent> [unite]<C-g>   :<C-u>GFiles<CR>
+nnoremap <silent> [unite]w   :<C-u>UniteWithCursorWord grep/git:/:<CR>
+nnoremap <silent> [unite]<C-b>   :<C-u>Buffers<CR>
+nnoremap <silent> [unite]<C-r>   :<C-u>Rg 
+nnoremap <silent> [unite]s   :<C-u>Unite bookmark<CR>
+nnoremap <silent> [unite]y   :<C-u>Unite -buffer-name=register register<<CR>
+
 
 "------------------------------------
 " vim-airline
