@@ -1,0 +1,6 @@
+set visualbell
+set noerrorbells
+let mapleader = ","
+
+
+nnoremap <leader>r :<C-u>action RunClass<CR>
