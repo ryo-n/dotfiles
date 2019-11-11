@@ -66,17 +66,13 @@ colorscheme jellybeans
 " fzf
 " -------------------------------
 
-nnoremap [unite]    <Nop>
-nmap     <C-u> [unite]
+nnoremap [fzf]    <Nop>
+nmap     <C-u> [fzf]
 
-nnoremap <silent> [unite]f   :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> [unite]<C-d>   :<C-u>Unite file_rec/async<CR>
-nnoremap <silent> [unite]<C-g>   :<C-u>GFiles<CR>
-nnoremap <silent> [unite]w   :<C-u>UniteWithCursorWord grep/git:/:<CR>
-nnoremap <silent> [unite]<C-b>   :<C-u>Buffers<CR>
-nnoremap <silent> [unite]<C-r>   :<C-u>Rg 
-nnoremap <silent> [unite]s   :<C-u>Unite bookmark<CR>
-nnoremap <silent> [unite]y   :<C-u>Unite -buffer-name=register register<<CR>
+nnoremap <silent> [fzf]<C-d>   :<C-u>Files<CR>
+nnoremap <silent> [fzf]<C-g>   :<C-u>GFiles<CR>
+nnoremap <silent> [fzf]<C-b>   :<C-u>Buffers<CR>
+nnoremap <silent> [fzf]<C-r>   :<C-u>Rg 
 
 
 "------------------------------------
