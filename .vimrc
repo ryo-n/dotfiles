@@ -52,6 +52,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'thinca/vim-quickrun'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -73,6 +74,20 @@ nnoremap <silent> [fzf]<C-d>   :<C-u>Files<CR>
 nnoremap <silent> [fzf]<C-g>   :<C-u>GFiles<CR>
 nnoremap <silent> [fzf]<C-b>   :<C-u>Buffers<CR>
 nnoremap <silent> [fzf]<C-r>   :<C-u>Rg 
+
+" -------------------------------
+" easymotion
+" -------------------------------
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+nmap s <Plug>(easymotion-overwin-f)
+
+let g:EasyMotion_smartcase = 1
+
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+
 
 
 "------------------------------------
