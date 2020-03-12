@@ -6,10 +6,9 @@ nnoremap <leader>r :<C-u>action RunClass<CR>
 nnoremap <leader>t :<C-u>action ExternalToolsGroup<CR>
 nnoremap <leader>d :<C-u>action DebugClass<CR>
 
-let g:EasyMotion_do_mapping = 0 
+set easymotion
 
 nmap s <Plug>(easymotion-s)
-let g:EasyMotion_smartcase = 1
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
