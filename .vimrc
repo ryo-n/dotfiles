@@ -18,10 +18,16 @@ set fenc=utf-8
 set fencs=utf-8,iso-2022-jp,euc-jp,cp932
 set t_Co=256
 set history=200
-set pastetoggle=<f5>
+set pastetoggle=<f4>
 set mouse-=a
 set noswapfile
 set nobackup
+set undofile
+if !isdirectory(expand("$HOME/.vim/undodir"))
+    call mkdir(expand("$HOME/.vim/undodir"), "p")
+endif
+
+set undodir=$HOME/.vim/undodir
 
 "Python3 support
 "let g:python3_host_prog = expand('$HOME') . '/.pyenv/shims/python3'
@@ -45,17 +51,30 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'nanotech/jellybeans.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'thinca/vim-quickrun'
+Plug 'sjl/gundo.vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'easymotion/vim-easymotion'
+Plug 'christoomey/vim-system-copy'
 
 call plug#end()
 
+" -------------------------------
+" snippets
+" -------------------------------
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
 
 
 " -------------------------------
@@ -74,6 +93,7 @@ nnoremap <silent> [fzf]<C-d>   :<C-u>Files<CR>
 nnoremap <silent> [fzf]<C-g>   :<C-u>GFiles<CR>
 nnoremap <silent> [fzf]<C-b>   :<C-u>Buffers<CR>
 nnoremap <silent> [fzf]<C-r>   :<C-u>Rg 
+nnoremap <silent> [fzf]<C-h>   :<C-u>History:<CR>
 
 " -------------------------------
 " easymotion
@@ -96,6 +116,7 @@ map <Leader>k <Plug>(easymotion-k)
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
+let g:airline#extensions#tabline#enabled = 1 
 
 
 "------------------------------------
@@ -163,4 +184,31 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
+
+" -------------------------------
+" gundo
+" -------------------------------
+
+let g:gundo_prefer_python3 = 1
+nnoremap <F5> :GundoToggle<CR>
+
+" -------------------------------
+" quickrun
+" -------------------------------
+let g:quickrun_config = {
+\
+\   "py/atcoder_submit" : {
+\       "command"   : "../../submit.sh",
+\       "cmdopt"   : "Python",
+\       "exec" : "%c %o",
+\   },
+\
+\   "py/atcoder_test" : {
+\       "command"   : "../../test.sh",
+\       "exec" : "%c",
+\   },
+\
+\
+\}
+
 

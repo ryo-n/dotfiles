@@ -6,7 +6,7 @@ autoload -Uz compinit && compinit -i
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 export PATH=/usr/local/opt/openssl/bin/:/opt/local/bin:/usr/local/bin:/opt/local/sbin:/Application/android-sdk-mac_86/tools:/usr/local/mysql/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin:~/go/bin:~/bin
+export PATH=$PATH:~/go/bin:/usr/local/go/bin:~/bin
 export LC_ALL='ja_JP.UTF-8'
 export HOMEBREW_BREWFILE=~/Dropbox/Brewfile
 export XDG_CONFIG_HOME=~/.config
@@ -22,6 +22,7 @@ setopt correct
 setopt list_packed 
 
 setopt nolistbeep 
+setopt histverify
 
 alias tmux="tmux -2"
 alias time="gtime"
@@ -60,7 +61,7 @@ SAVEHIST=10000
 setopt hist_ignore_all_dups     # ignore duplication command history list
 setopt share_history        # share command history data 
 
-bindkey -v
+#bindkey -v
 
 autoload history-search-end
 #zle -N history-beginning-search-backward-end history-search-end
@@ -73,22 +74,22 @@ autoload history-search-end
 # viins
 # ------------------------------
 
-bindkey -M viins '\er' history-incremental-pattern-search-forward
-bindkey -M viins '^?'  backward-delete-char
-bindkey -M viins '^A'  beginning-of-line
-bindkey -M viins '^B'  backward-char
-bindkey -M viins '^D'  delete-char-or-list
-bindkey -M viins '^E'  end-of-line
-bindkey -M viins '^F'  forward-char
-bindkey -M viins '^G'  send-break
-bindkey -M viins '^H'  backward-delete-char
-bindkey -M viins '^K'  kill-line
-bindkey -M viins '^N'  down-line-or-history
-bindkey -M viins '^P'  up-line-or-history
-bindkey -M viins '^R'  history-incremental-pattern-search-backward
-bindkey -M viins '^U'  backward-kill-line
-bindkey -M viins '^W'  backward-kill-word
-bindkey -M viins '^Y'  yank
+#bindkey -M viins '\er' history-incremental-pattern-search-forward
+#bindkey -M viins '^?'  backward-delete-char
+#bindkey -M viins '^A'  beginning-of-line
+#bindkey -M viins '^B'  backward-char
+#bindkey -M viins '^D'  delete-char-or-list
+#bindkey -M viins '^E'  end-of-line
+#bindkey -M viins '^F'  forward-char
+#bindkey -M viins '^G'  send-break
+#bindkey -M viins '^H'  backward-delete-char
+#bindkey -M viins '^K'  kill-line
+#bindkey -M viins '^N'  down-line-or-history
+#bindkey -M viins '^P'  up-line-or-history
+#bindkey -M viins '^R'  history-incremental-pattern-search-backward
+#bindkey -M viins '^U'  backward-kill-line
+#bindkey -M viins '^W'  backward-kill-word
+#bindkey -M viins '^Y'  yank
 
 
 # ------------------------------
