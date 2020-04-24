@@ -6,6 +6,7 @@ nnoremap <leader>r :<C-u>action RunClass<CR>
 nnoremap <leader>t :<C-u>action ExternalToolsGroup<CR>
 nnoremap <leader>d :<C-u>action DebugClass<CR>
 
+set surround
 set easymotion
 
 nmap s <Plug>(easymotion-s)
