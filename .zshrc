@@ -7,6 +7,7 @@ autoload -Uz compinit && compinit -i
 fpath=(/usr/local/share/zsh-completions $fpath)
 export PATH=/usr/local/opt/openssl/bin/:/opt/local/bin:/usr/local/bin:/opt/local/sbin:/Application/android-sdk-mac_86/tools:/usr/local/mysql/bin:$PATH
 export PATH=$PATH:~/go/bin:/usr/local/go/bin:~/bin
+export PATH=$PATH:/usr/local/lib/ruby/gems/2.7.0/bin/
 export LC_ALL='ja_JP.UTF-8'
 export HOMEBREW_BREWFILE=~/Dropbox/Brewfile
 export XDG_CONFIG_HOME=~/.config
@@ -123,3 +124,13 @@ export SDKMAN_DIR="/Users/ryo/.sdkman"
 
 # zsh-bd
 . $HOME/.zsh/plugins/bd/bd.zsh
+
+# anyenv
+eval "$(anyenv init -)"
+
+
+# pipenv
+export PIPENV_MAX_DEPTH=10
+
+#  brew install zsh-syntax-highlighting
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
