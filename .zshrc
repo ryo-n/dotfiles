@@ -128,7 +128,7 @@ esac
 
 
 # zsh-bd
-. $HOME/.zsh/plugins/bd/bd.zsh
+[ -f $HOME/.zsh/plugins/bd/bd.zsh ] && . $HOME/.zsh/plugins/bd/bd.zsh
 
 # anyenv
 eval "$(anyenv init -)"
