@@ -23,6 +23,7 @@ set mouse-=a
 set noswapfile
 set nobackup
 set undofile
+set foldmethod=marker
 if !isdirectory(expand("$HOME/.vim/undodir"))
     call mkdir(expand("$HOME/.vim/undodir"), "p")
 endif
@@ -57,8 +58,11 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'thinca/vim-quickrun'
 Plug 'sjl/gundo.vim'
 Plug 'dhruvasagar/vim-table-mode'
@@ -68,7 +72,7 @@ Plug 'christoomey/vim-system-copy'
 call plug#end()
 
 " -------------------------------
-" snippets
+" snippets 
 " -------------------------------
 
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -78,12 +82,12 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 " -------------------------------
-" color
+" color 
 " -------------------------------
 colorscheme jellybeans
 
 " -------------------------------
-" fzf
+" fzf 
 " -------------------------------
 
 nnoremap [fzf]    <Nop>
@@ -96,7 +100,7 @@ nnoremap <silent> [fzf]<C-r>   :<C-u>Rg
 nnoremap <silent> [fzf]<C-h>   :<C-u>History:<CR>
 
 " -------------------------------
-" easymotion
+" easymotion 
 " -------------------------------
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
@@ -111,7 +115,7 @@ map <Leader>k <Plug>(easymotion-k)
 
 
 "------------------------------------
-" vim-airline
+" vim-airline 
 "------------------------------------
 set laststatus=2
 let g:airline_powerline_fonts = 1
@@ -120,12 +124,12 @@ let g:airline#extensions#tabline#enabled = 1
 
 
 "------------------------------------
-" tmuxline
+" tmuxline 
 "------------------------------------
 let g:airline#extensions#tmuxline#enabled = 0 
 
 "------------------------------------
-" coc.nvim
+" coc.nvim 
 "------------------------------------
 set updatetime=300
 
@@ -186,14 +190,14 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " -------------------------------
-" gundo
+" gundo 
 " -------------------------------
 
 let g:gundo_prefer_python3 = 1
 nnoremap <F5> :GundoToggle<CR>
 
 " -------------------------------
-" quickrun
+" quickrun 
 " -------------------------------
 let g:quickrun_config = {
 \

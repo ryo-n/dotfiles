@@ -8,6 +8,8 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 export PATH=/usr/local/opt/openssl/bin/:/opt/local/bin:/usr/local/bin:/opt/local/sbin:/Application/android-sdk-mac_86/tools:/usr/local/mysql/bin:$PATH
 export PATH=$PATH:~/go/bin:/usr/local/go/bin:~/bin
 export PATH=$PATH:/usr/local/lib/ruby/gems/2.7.0/bin/
+# Created by `userpath` on 2020-09-23 06:34:59 pipx
+export PATH="$PATH:$HOME/.local/bin"
 export LC_ALL='ja_JP.UTF-8'
 export HOMEBREW_BREWFILE=~/Dropbox/Brewfile
 export XDG_CONFIG_HOME=~/.config
@@ -30,6 +32,8 @@ alias time="gtime"
 #alias vim="nvim"
 
 export LANG=ja_JP.UTF-8
+
+export RUST_BACKTRACE=1
 
 case ${UID} in
 0)
@@ -112,15 +116,16 @@ bindkey '^g' peco-src
 
 
 
-if [ -f $(brew --prefix)/etc/brew-wrap ];then
-  source $(brew --prefix)/etc/brew-wrap
-fi
+case ${OSTYPE} in
+      darwin*)
+        if [ -f $(brew --prefix)/etc/brew-wrap ];then
+          source $(brew --prefix)/etc/brew-wrap
+        fi
+        ;;
+esac
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/ryo/.sdkman"
-[[ -s "/Users/ryo/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ryo/.sdkman/bin/sdkman-init.sh"
 
 # zsh-bd
 . $HOME/.zsh/plugins/bd/bd.zsh
@@ -133,4 +138,5 @@ eval "$(anyenv init -)"
 export PIPENV_MAX_DEPTH=10
 
 #  brew install zsh-syntax-highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
